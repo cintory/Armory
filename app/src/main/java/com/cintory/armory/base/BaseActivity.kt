@@ -2,6 +2,7 @@ package com.cintory.armory.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import java.security.AccessControlContext
 
 /**
@@ -18,11 +19,18 @@ abstract class BaseActivity : AppCompatActivity() {
         mContext = this
         onViewCreated()
         initEventAndData()
+    }
 
+    protected fun setToolBar(toolBar: Toolbar, title: String) {
+        toolBar.title = title
+        setSupportActionBar(toolBar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
 
     protected open fun onViewCreated() {}
 
     abstract fun getLayout(): Int
+
     protected abstract fun initEventAndData()
 }

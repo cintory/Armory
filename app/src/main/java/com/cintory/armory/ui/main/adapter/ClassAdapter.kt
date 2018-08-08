@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.item_spec.view.*
  * 作者：Cintory on 2018/7/26 16:29
  * 邮箱：Cintory@gmail.com
  */
-class ClassAdapter(t: List<ClassBean>) : BaseAdapter<ClassBean, ClassAdapter.ClassHolder>(t) {
+class ClassAdapter(t: MutableList<ClassBean>) :
+    BaseAdapter<ClassBean, ClassAdapter.ClassHolder>(t) {
 
     var mOnClassSelected: OnClassSelected? = null
 
@@ -32,9 +33,7 @@ class ClassAdapter(t: List<ClassBean>) : BaseAdapter<ClassBean, ClassAdapter.Cla
         GlideApp.with(holder.itemView).load(items[position].getClassImage()).centerCrop()
             .into(holder.itemView.iv_class_image)
         holder.itemView.setOnClickListener {
-            val classBean = items[position]
-            classBean.specs = null
-            mOnClassSelected?.onItemSelect(classBean)
+            mOnClassSelected?.onItemSelect(items[position].id, null)
         }
         items[position].specs?.forEach {
             val specView = LayoutInflater.from(holder.itemView.context).inflate(
@@ -45,16 +44,14 @@ class ClassAdapter(t: List<ClassBean>) : BaseAdapter<ClassBean, ClassAdapter.Cla
             specView.tv_spec_name.text = it.name
             val spec = it
             specView.setOnClickListener {
-                val classBean = items[position]
-                classBean.specs = listOf(spec)
-                mOnClassSelected?.onItemSelect(classBean)
+                mOnClassSelected?.onItemSelect(items[position].id, spec.id)
             }
             holder.itemView.ll_specs.addView(specView)
         }
     }
 
     interface OnClassSelected {
-        fun onItemSelect(classBean: ClassBean)
+        fun onItemSelect(classID: Int, specID: Int?)
     }
 
     class ClassHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

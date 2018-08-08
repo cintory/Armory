@@ -15,9 +15,9 @@ interface MainContract {
     interface View : BaseView {
         fun setContent(data: List<RankingBean>)
 
-        fun setEncounter(encountersEntity: ZonesBean.EncountersEntity)
+        fun setEncounter(zoneID: Int, encounterID: Int)
 
-        fun setSpec(classBean: ClassBean)
+        fun setSpec(classID: Int, specID: Int?)
     }
 
     interface Presenter : BasePresenter<View> {

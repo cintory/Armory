@@ -13,7 +13,7 @@ class RankingBean(
     @SerializedName("class")
     val classID: Int,
     val spec: Int,
-    val total: Int,
+    val total: Double,
     val duration: Int,
     val startTime: Long,
     val fightID: Int,
@@ -32,7 +32,7 @@ class RankingBean(
         parcel.readString(),
         parcel.readInt(),
         parcel.readInt(),
-        parcel.readInt(),
+        parcel.readDouble(),
         parcel.readInt(),
         parcel.readLong(),
         parcel.readInt(),
@@ -43,27 +43,28 @@ class RankingBean(
         parcel.readByte() != 0.toByte(),
         parcel.readInt(),
         parcel.readInt(),
-        TODO("talents"),
-        TODO("gear"),
+        parcel.createTypedArrayList(TalentBean),
+        parcel.createTypedArrayList(GearBean),
         parcel.readInt()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
         parcel.writeInt(classID)
         parcel.writeInt(spec)
-        parcel.writeInt(total)
+        parcel.writeDouble(total)
         parcel.writeInt(duration)
         parcel.writeLong(startTime)
         parcel.writeInt(fightID)
         parcel.writeString(reportID)
-        parcel.writeString(guildName)
+        parcel.writeString(guildName ?: "")
         parcel.writeString(serverName)
         parcel.writeString(regionName)
         parcel.writeByte(if (hidden) 1 else 0)
         parcel.writeInt(itemLevel)
         parcel.writeInt(exploit)
+        parcel.writeTypedList(talents)
+        parcel.writeTypedList(gear)
         parcel.writeInt(size)
     }
 

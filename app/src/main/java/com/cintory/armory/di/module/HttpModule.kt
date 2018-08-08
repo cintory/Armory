@@ -6,6 +6,7 @@ import com.cintory.armory.app.SecretKey
 import com.cintory.armory.component.HttpCommonParamsInterceptor
 import com.cintory.armory.model.http.api.WarcraftLogsApi
 import com.cintory.armory.util.SystemUtil
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -126,7 +127,7 @@ class HttpModule {
         return builder.baseUrl(url)
             .client(client)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().serializeNulls().create()))
             .build()
     }
 }

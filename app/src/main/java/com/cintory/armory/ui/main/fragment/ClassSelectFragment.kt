@@ -26,7 +26,7 @@ class ClassSelectFragment : BaseDialogFragment() {
 
     @Inject
     lateinit var mHttpHelper: HttpHelper
-    lateinit var mClasses: ArrayList<ClassBean>
+    lateinit var mClasses: MutableList<ClassBean>
     lateinit var mClassAdapter: ClassAdapter
 
     override fun getLayoutID() = R.layout.fragment_select
@@ -40,12 +40,12 @@ class ClassSelectFragment : BaseDialogFragment() {
     }
 
     override fun initEventAndData() {
-        mClasses = ArrayList()
+        mClasses = mutableListOf()
         mClassAdapter = ClassAdapter(mClasses)
         mClassAdapter.mOnClassSelected = object : ClassAdapter.OnClassSelected {
-            override fun onItemSelect(classBean: ClassBean) {
+            override fun onItemSelect(classID: Int, specID: Int?) {
                 if (activity is MainContract.View) {
-                    (activity as MainContract.View).setSpec(classBean)
+                    (activity as MainContract.View).setSpec(classID, specID)
                     dismiss()
                 }
             }
@@ -70,6 +70,7 @@ class ClassSelectFragment : BaseDialogFragment() {
             mHttpHelper.getClass()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io()).subscribe { data: List<ClassBean> ->
+                    App.instance.mCacheManager.mClassList = data
                     mClassAdapter.addNews(data)
                 }
         )

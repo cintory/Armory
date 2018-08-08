@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="10dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/cl_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="?attr/actionBarSize"
+                android:fitsSystemWindows="true"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.1">
+
+                <ImageView
+                    android:id="@+id/iv_talent_15"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_talent_30"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/iv_talent_30"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_talent_15"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_talent_45"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_talent_15"
+                    app:layout_constraintTop_toTopOf="@id/iv_talent_15"/>
+
+                <ImageView
+                    android:id="@+id/iv_talent_45"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_talent_15"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_talent_60"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_talent_30"
+                    app:layout_constraintTop_toTopOf="@id/iv_talent_15"/>
+
+                <ImageView
+                    android:id="@+id/iv_talent_60"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_talent_15"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_talent_75"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_talent_45"
+                    app:layout_constraintTop_toTopOf="@id/iv_talent_15"/>
+
+                <ImageView
+                    android:id="@+id/iv_talent_75"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_talent_15"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_talent_90"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_talent_60"
+                    app:layout_constraintTop_toTopOf="@id/iv_talent_15"/>
+
+                <ImageView
+                    android:id="@+id/iv_talent_90"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_talent_15"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_talent_100"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_talent_75"
+                    app:layout_constraintTop_toTopOf="@id/iv_talent_15"/>
+
+                <ImageView
+                    android:id="@+id/iv_talent_100"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_talent_15"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_talent_90"
+                    app:layout_constraintTop_toTopOf="@id/iv_talent_15"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_head"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_neck"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_talent_15"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_neck"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_head"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_shoulder"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_head"
+                    app:layout_constraintTop_toTopOf="@id/iv_head"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_shoulder"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_head"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_chest"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_neck"
+                    app:layout_constraintTop_toTopOf="@id/iv_head"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_chest"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_head"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_waist"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_shoulder"
+                    app:layout_constraintTop_toTopOf="@id/iv_head"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_waist"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_head"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_legs"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_chest"
+                    app:layout_constraintTop_toTopOf="@id/iv_head"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_legs"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_head"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_feet"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_waist"
+                    app:layout_constraintTop_toTopOf="@id/iv_head"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_feet"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_head"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_wrist"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_legs"
+                    app:layout_constraintTop_toTopOf="@id/iv_head"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_wrist"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_head"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_feet"
+                    app:layout_constraintTop_toTopOf="@id/iv_head"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_Hands"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_finger1"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_head"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_finger1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_finger2"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_Hands"
+                    app:layout_constraintTop_toTopOf="@id/iv_Hands"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_finger2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_trinket1"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_finger1"
+                    app:layout_constraintTop_toTopOf="@id/iv_Hands"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_trinket1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_trinket2"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_finger2"
+                    app:layout_constraintTop_toTopOf="@id/iv_Hands"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_trinket2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_back"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_trinket1"
+                    app:layout_constraintTop_toTopOf="@id/iv_Hands"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_back"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_mainHand"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_trinket2"
+                    app:layout_constraintTop_toTopOf="@id/iv_Hands"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_mainHand"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/iv_offHand"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_back"
+                    app:layout_constraintTop_toTopOf="@id/iv_Hands"/>
+
+                <com.cintory.armory.widget.ItemView
+                    android:id="@+id/iv_offHand"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_min="40dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/iv_mainHand"
+                    app:layout_constraintTop_toTopOf="@id/iv_Hands"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+</android.support.design.widget.CoordinatorLayout>

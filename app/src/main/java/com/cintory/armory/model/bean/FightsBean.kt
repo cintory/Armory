@@ -1,5 +1,8 @@
 package com.cintory.armory.model.bean
 
+import android.os.Parcel
+import android.os.Parcelable
+
 /**
  * 作者：Cintory on 2018/7/24 17:41
  * 邮箱：Cintory@gmail.com
@@ -28,7 +31,7 @@ class FightsBean {
     var phases: List<PhasesEntity>? = null
 
 
-    class FightsEntity {
+    class FightsEntity() : Parcelable {
         /**
          * id : 1
          * start_time : 3329938
@@ -45,8 +48,8 @@ class FightsBean {
          */
 
         var id: Int = 0
-        var start_time: Int = 0
-        var end_time: Int = 0
+        var start_time: Long = 0
+        var end_time: Long = 0
         var boss: Int = 0
         var size: Int = 0
         var difficulty: Int = 0
@@ -56,6 +59,50 @@ class FightsBean {
         var fightPercentage: Int = 0
         var lastPhaseForPercentageDisplay: Int = 0
         var name: String? = null
+
+        constructor(parcel: Parcel) : this() {
+            id = parcel.readInt()
+            start_time = parcel.readLong()
+            end_time = parcel.readLong()
+            boss = parcel.readInt()
+            size = parcel.readInt()
+            difficulty = parcel.readInt()
+            isKill = parcel.readByte() != 0.toByte()
+            partial = parcel.readInt()
+            bossPercentage = parcel.readInt()
+            fightPercentage = parcel.readInt()
+            lastPhaseForPercentageDisplay = parcel.readInt()
+            name = parcel.readString()
+        }
+
+        override fun writeToParcel(parcel: Parcel, flags: Int) {
+            parcel.writeInt(id)
+            parcel.writeLong(start_time)
+            parcel.writeLong(end_time)
+            parcel.writeInt(boss)
+            parcel.writeInt(size)
+            parcel.writeInt(difficulty)
+            parcel.writeByte(if (isKill) 1 else 0)
+            parcel.writeInt(partial)
+            parcel.writeInt(bossPercentage)
+            parcel.writeInt(fightPercentage)
+            parcel.writeInt(lastPhaseForPercentageDisplay)
+            parcel.writeString(name)
+        }
+
+        override fun describeContents(): Int {
+            return 0
+        }
+
+        companion object CREATOR : Parcelable.Creator<FightsEntity> {
+            override fun createFromParcel(parcel: Parcel): FightsEntity {
+                return FightsEntity(parcel)
+            }
+
+            override fun newArray(size: Int): Array<FightsEntity?> {
+                return arrayOfNulls(size)
+            }
+        }
     }
 
     class FriendliesEntity {

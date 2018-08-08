@@ -6,7 +6,7 @@ import com.cintory.armory.model.bean.RankingBean
  * Created by Cintory on 2018/7/30 16:26
  * Email：Cintory@gmail.com
  */
-data class RankingResponse(
+class RankingResponse(
     val page: Int,
     val hasMorePages: Boolean,
     val count: Int,

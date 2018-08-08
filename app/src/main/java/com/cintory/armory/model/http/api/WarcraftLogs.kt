@@ -2,6 +2,7 @@ package com.cintory.armory.model.http.api
 
 import com.cintory.armory.model.bean.*
 import com.cintory.armory.model.bean.http.RankingResponse
+import com.cintory.armory.model.bean.http.TableResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -72,18 +73,18 @@ interface WarcraftLogsApi {
     fun getRankings(
         @Path("encounterID") encounterID: Int,
         @Query("metric") metric: String?,
-        @Query("size") size: String,
+        @Query("size") size: String?,
         @Query("difficulty") difficulty: String,
         @Query("partition") partition: String,
-        @Query("class") classX: String,
-        @Query("spec") spec: String,
-        @Query("bracket") bracket: String,
-        @Query("limit") limit: String,
-        @Query("guild") guild: String,
-        @Query("server") server: String,
-        @Query("region") region: String,
-        @Query("page") page: String,
-        @Query("filter") filter: String
+        @Query("class") classX: String?,
+        @Query("spec") spec: String?,
+        @Query("bracket") bracket: String?,
+        @Query("limit") limit: String?,
+        @Query("guild") guild: String?,
+        @Query("server") server: String?,
+        @Query("region") region: String?,
+        @Query("page") page: String?,
+        @Query("filter") filter: String?
     ): Single<RankingResponse>
 
     /**
@@ -316,27 +317,51 @@ interface WarcraftLogsApi {
      * language of the host (e.g., cn.warcraftlogs.com would get Chinese results).
      */
     @GET("report/tables/{view}/{code}")
+    fun getReportTablesBySourceID(
+        @Path("view") view: String,
+        @Path("code") code: String,
+        @Query("start") start: Long,
+        @Query("end") end: Long,
+        @Query("hostility") hostility: String?,
+        @Query("by") by: String?,
+        @Query("sourceid") sourceid: String,
+        @Query("sourceinstance") sourceinstance: String?,
+        @Query("sourceclass") sourceclass: String?,
+        @Query("targetid") targetid: String?,
+        @Query("targetinstance") targetinstance: String?,
+        @Query("targetclass") targetclass: String?,
+        @Query("abilityid") abilityid: String?,
+        @Query("options") options: String?,
+        @Query("cutoff") cutoff: String?,
+        @Query("encounter") encounter: String?,
+        @Query("wipes") wipes: String?,
+        @Query("difficulty") difficulty: String?,
+        @Query("filter") filter: String?,
+        @Query("translate") translate: Boolean?
+    ): Single<TableResponse<TableDetailBean>>
+
+    @GET("report/tables/{view}/{code}")
     fun getReportTables(
         @Path("view") view: String,
         @Path("code") code: String,
-        @Query("start") start: String,
-        @Query("end") end: String,
-        @Query("hostility") hostility: String,
-        @Query("by") by: String,
-        @Query("sourceid") sourceid: String,
-        @Query("sourceinstance") sourceinstance: String,
-        @Query("sourceclass") sourceclass: String,
-        @Query("targetid") targetid: String,
-        @Query("targetinstance") targetinstance: String,
-        @Query("targetclass") targetclass: String,
-        @Query("abilityid") abilityid: String,
-        @Query("options") options: String,
-        @Query("cutoff") cutoff: String,
-        @Query("encounter") encounter: String,
-        @Query("wipes") wipes: String,
-        @Query("difficulty") difficulty: String,
-        @Query("filter") filter: String, @Query("translate") translate: Boolean
-    ): Single<TablesBean>
+        @Query("start") start: Long,
+        @Query("end") end: Long,
+        @Query("hostility") hostility: String?,
+        @Query("by") by: String?,
+        @Query("sourceinstance") sourceinstance: String?,
+        @Query("sourceclass") sourceclass: String?,
+        @Query("targetid") targetid: String?,
+        @Query("targetinstance") targetinstance: String?,
+        @Query("targetclass") targetclass: String?,
+        @Query("abilityid") abilityid: String?,
+        @Query("options") options: String?,
+        @Query("cutoff") cutoff: String?,
+        @Query("encounter") encounter: String?,
+        @Query("wipes") wipes: String?,
+        @Query("difficulty") difficulty: String?,
+        @Query("filter") filter: String?,
+        @Query("translate") translate: Boolean?
+    ): Single<TableResponse<TableOverviewBean>>
 
     companion object {
 

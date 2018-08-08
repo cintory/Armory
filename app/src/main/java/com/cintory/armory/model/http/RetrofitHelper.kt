@@ -1,6 +1,10 @@
 package com.cintory.armory.model.http
 
+import com.cintory.armory.model.bean.TableDetailBean
+import com.cintory.armory.model.bean.TableOverviewBean
+import com.cintory.armory.model.bean.http.TableResponse
 import com.cintory.armory.model.http.api.WarcraftLogsApi
+import io.reactivex.Single
 import javax.inject.Inject
 
 /**
@@ -10,6 +14,7 @@ import javax.inject.Inject
 class RetrofitHelper @Inject constructor(
     private val mWarcraftLogsService: WarcraftLogsApi
 ) : HttpHelper {
+
 
     override fun getZone() = mWarcraftLogsService.getZone()
 
@@ -40,29 +45,28 @@ class RetrofitHelper @Inject constructor(
         reportID, true
     )
 
-
-    override fun getTables(
+    override fun getTablesBySourceID(
         view: String,
         reportID: String,
-        start: String,
-        end: String,
-        hostility: String,
-        by: String,
+        start: Long,
+        end: Long,
+        hostility: String?,
+        by: String?,
         sourceID: String,
-        sourceInstance: String,
-        sourceClass: String,
-        targetID: String,
-        targetInstance: String,
-        targetClass: String,
-        abilityID: String,
-        options: String,
-        cutoff: String,
-        encounter: String,
-        wipes: String,
-        difficulty: String,
-        filter: String,
-        translate: Boolean
-    ) = mWarcraftLogsService.getReportTables(
+        sourceInstance: String?,
+        sourceClass: String?,
+        targetID: String?,
+        targetInstance: String?,
+        targetClass: String?,
+        abilityID: String?,
+        options: String?,
+        cutoff: String?,
+        encounter: String?,
+        wipes: String?,
+        difficulty: String?,
+        filter: String?,
+        translate: Boolean?
+    ) = mWarcraftLogsService.getReportTablesBySourceID(
         view,
         reportID,
         start,
@@ -85,4 +89,45 @@ class RetrofitHelper @Inject constructor(
         translate
     )
 
+    override fun getTables(
+        view: String,
+        reportID: String,
+        start: Long,
+        end: Long,
+        hostility: String?,
+        by: String?,
+        sourceInstance: String?,
+        sourceClass: String?,
+        targetID: String?,
+        targetInstance: String?,
+        targetClass: String?,
+        abilityID: String?,
+        options: String?,
+        cutoff: String?,
+        encounter: String?,
+        wipes: String?,
+        difficulty: String?,
+        filter: String?,
+        translate: Boolean?
+    ) = mWarcraftLogsService.getReportTables(
+        view,
+        reportID,
+        start,
+        end,
+        hostility,
+        by,
+        sourceInstance,
+        sourceClass,
+        targetID,
+        targetInstance,
+        targetClass,
+        abilityID,
+        options,
+        cutoff,
+        encounter,
+        wipes,
+        difficulty,
+        filter,
+        translate
+    )
 }

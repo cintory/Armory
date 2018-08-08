@@ -1,15 +1,18 @@
 package com.cintory.armory.ui.main.activity
 
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.cintory.armory.R
+import com.cintory.armory.app.App
 import com.cintory.armory.app.Configuration
 import com.cintory.armory.base.BaseMvpActivity
 import com.cintory.armory.base.contract.main.MainContract
 import com.cintory.armory.model.bean.*
 import com.cintory.armory.presenter.main.MainPresenter
 import com.cintory.armory.ui.main.adapter.ParameterSpannerAdapter
+import com.cintory.armory.ui.main.adapter.RankingAdapter
 import com.cintory.armory.ui.main.fragment.ClassSelectFragment
 import com.cintory.armory.ui.main.fragment.EncounterSelectFragment
 import com.cintory.armory.util.GsonUtil
@@ -21,12 +24,16 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : BaseMvpActivity<MainPresenter, MainContract.View>(), MainContract.View {
 
+    var mZoneID: Int? = null
+    var mEncounterID: Int? = null
+    var mClassID: Int? = null
+    var mSpecID: Int? = null
 
-    lateinit var mEncountersEntity: ZonesBean.EncountersEntity
-    lateinit var mClass: ClassBean
     var mDifficulty: ItemBean? = null
     var mMetric: ItemBean? = null
 
+    lateinit var mRankingAdapter: RankingAdapter
+    var mRankingList = mutableListOf<RankingBean>()
 
     val mClassSelectFragment = ClassSelectFragment.newInstance()
     val mEncounterSelectFragment = EncounterSelectFragment.newInstance()
@@ -90,30 +97,40 @@ class MainActivity : BaseMvpActivity<MainPresenter, MainContract.View>(), MainCo
         }
         tv_search.setOnClickListener {
             mPresenter.getRankData(
-                mEncountersEntity.id, mMetric?.id, "", mDifficulty!!.id,
-                1.toString(), mClass.id.toString(), mClass?.specs!![0].id.toString(),
+                mEncounterID!!, mMetric?.id, "", mDifficulty!!.id,
+                1.toString(), mClassID.toString(), mSpecID.toString(),
                 "", 10.toString(), "", "", "", "", ""
             )
         }
+
+        mRankingAdapter = RankingAdapter(mRankingList)
+        rv_data.layoutManager = LinearLayoutManager(mContext)
+        rv_data.adapter = mRankingAdapter
+    }
+
+    override fun setSpec(classID: Int, specID: Int?) {
+        mClassID = classID
+        mSpecID = specID
+        val classBean = App.instance.mCacheManager.getClassByID(classID)
+        val specsEntity = App.instance.mCacheManager.getSpecByID(classID, specID)
+        if (specsEntity == null) {
+            tv_class_spec_name.text = classBean!!.name
+        } else {
+            tv_class_spec_name.text = "${classBean!!.name} - ${specsEntity.name}"
+        }
+    }
+
+    override fun setEncounter(zoneID: Int, encounterID: Int) {
+        mZoneID = zoneID
+        mEncounterID = encounterID
+        tv_encounter_name.text =
+                App.instance.mCacheManager.getEncounterID(zoneID, encounterID)!!.name
     }
 
     override fun setContent(data: List<RankingBean>) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mRankingAdapter.clearAndAddNews(data)
     }
 
-    override fun setEncounter(encountersEntity: ZonesBean.EncountersEntity) {
-        mEncountersEntity = encountersEntity
-        tv_encounter_name.text = encountersEntity.name
-    }
-
-    override fun setSpec(classBean: ClassBean) {
-        mClass = classBean
-        if (mClass.specs == null) {
-            tv_class_spec_name.text = mClass.name
-        } else {
-            tv_class_spec_name.text = "${mClass.name} - ${mClass.specs!![0].name}"
-        }
-    }
 }
 
 

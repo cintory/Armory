@@ -32,9 +32,9 @@ class EncounterSelectFragment : BaseDialogFragment() {
         mZones = ArrayList()
         mZoneAdapter = ZoneAdapter(mZones)
         mZoneAdapter.mEncounterClickListener = object : ZoneAdapter.OnEncounterClickListener {
-            override fun onItemClick(entity: ZonesBean.EncountersEntity) {
+            override fun onItemClick(zoneID: Int, encounterID: Int) {
                 if (activity is MainContract.View) {
-                    (activity as MainContract.View).setEncounter(entity)
+                    (activity as MainContract.View).setEncounter(zoneID, encounterID)
                     dismiss()
                 }
             }
@@ -58,7 +58,8 @@ class EncounterSelectFragment : BaseDialogFragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe { data: List<ZonesBean> ->
-                    mZoneAdapter.addNews(data.filter { !it.frozen })
+                    App.instance.mCacheManager.mZonesList = data.filter { !it.frozen }
+                    mZoneAdapter.addNews(App.instance.mCacheManager.mZonesList!!)
                 }
         )
     }

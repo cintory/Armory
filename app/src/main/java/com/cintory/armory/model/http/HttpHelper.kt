@@ -2,6 +2,7 @@ package com.cintory.armory.model.http
 
 import com.cintory.armory.model.bean.*
 import com.cintory.armory.model.bean.http.RankingResponse
+import com.cintory.armory.model.bean.http.TableResponse
 import io.reactivex.Single
 
 /**
@@ -34,26 +35,48 @@ interface HttpHelper {
 
     fun getFights(reportID: String): Single<FightsBean>
 
+    fun getTablesBySourceID(
+        view: String,
+        reportID: String,
+        start: Long,
+        end: Long,
+        hostility: String? = null,
+        by: String? = null,
+        sourceID: String,
+        sourceInstance: String? = null,
+        sourceClass: String? = null,
+        targetID: String? = null,
+        targetInstance: String? = null,
+        targetClass: String? = null,
+        abilityID: String? = null,
+        options: String? = null,
+        cutoff: String? = null,
+        encounter: String? = null,
+        wipes: String? = null,
+        difficulty: String? = null,
+        filter: String? = null,
+        translate: Boolean? = null
+    ): Single<TableResponse<TableDetailBean>>
+
     fun getTables(
         view: String,
         reportID: String,
-        start: String,
-        end: String,
-        hostility: String,
-        by: String,
-        sourceID: String,
-        sourceInstance: String,
-        sourceClass: String,
-        targetID: String,
-        targetInstance: String,
-        targetClass: String,
-        abilityID: String,
-        options: String,
-        cutoff: String,
-        encounter: String,
-        wipes: String,
-        difficulty: String,
-        filter: String,
-        translate: Boolean
-    ): Single<TablesBean>
+        start: Long,
+        end: Long,
+        hostility: String? = null,
+        by: String? = null,
+        sourceInstance: String? = null,
+        sourceClass: String? = null,
+        targetID: String? = null,
+        targetInstance: String? = null,
+        targetClass: String? = null,
+        abilityID: String? = null,
+        options: String? = null,
+        cutoff: String? = null,
+        encounter: String? = null,
+        wipes: String? = null,
+        difficulty: String? = null,
+        filter: String? = null,
+        translate: Boolean? = null
+    ): Single<TableResponse<TableOverviewBean>>
 }

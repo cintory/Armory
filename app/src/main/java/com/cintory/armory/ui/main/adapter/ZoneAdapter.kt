@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.item_zone.view.*
  * 作者：Cintory on 2018/7/25 11:13
  * 邮箱：Cintory@gmail.com
  */
-class ZoneAdapter(t: List<ZonesBean>) : BaseAdapter<ZonesBean, ZoneAdapter.ZoneHolder>(t) {
+class ZoneAdapter(t: MutableList<ZonesBean>) : BaseAdapter<ZonesBean, ZoneAdapter.ZoneHolder>(t) {
 
     lateinit var mEncounterClickListener: OnEncounterClickListener
 
@@ -37,13 +37,18 @@ class ZoneAdapter(t: List<ZonesBean>) : BaseAdapter<ZonesBean, ZoneAdapter.ZoneH
                 .into(encounterView.iv_encounter)
             encounterView.tv_encounter_name.text = it.name
             val item = it
-            encounterView.setOnClickListener { mEncounterClickListener?.onItemClick(item) }
+            encounterView.setOnClickListener {
+                mEncounterClickListener?.onItemClick(
+                    items[position].id,
+                    item.id
+                )
+            }
             holder.itemView.ll_encounter.addView(encounterView)
         }
     }
 
     interface OnEncounterClickListener {
-        fun onItemClick(entity: ZonesBean.EncountersEntity)
+        fun onItemClick(zoneID: Int, encounterID: Int)
     }
 
     class ZoneHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

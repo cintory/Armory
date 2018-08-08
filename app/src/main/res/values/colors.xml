@@ -6,4 +6,17 @@
 
     <color name="translate">#00000000</color>
 
+    <color name="warrior">#B48E67</color>
+    <color name="hunter">#91B467</color>
+    <color name="shaman">#2659e8</color>
+    <color name="paladin">#DA80A7</color>
+    <color name="priest">#E7E7E7</color>
+    <color name="warlock">#8678B4</color>
+    <color name="rogue">#E4DD6D</color>
+    <color name="mage">#62b7d6</color>
+    <color name="druid">#E37022</color>
+    <color name="deathknight">#AE233E</color>
+    <color name="monk">#2E8A6D</color>
+    <color name="demonhunter">#9133B2</color>
+    <color name="others">#5eadb9</color>
 </resources>
