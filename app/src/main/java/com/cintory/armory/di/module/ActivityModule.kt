@@ -1,6 +1,6 @@
 package com.cintory.armory.di.module
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import com.cintory.armory.di.scope.ActivityScope
 import dagger.Module
 import dagger.Provides
@@ -10,10 +10,10 @@ import dagger.Provides
  * 邮箱：Cintory@gmail.com
  */
 @Module
-class ActivityModule(var mActivity: Activity) {
+class ActivityModule(var mActivity: AppCompatActivity) {
 
-    @Provides
-    @ActivityScope
-    fun provideActivity() = mActivity
+  @Provides
+  @ActivityScope
+  fun provideActivity() = mActivity
 
 }

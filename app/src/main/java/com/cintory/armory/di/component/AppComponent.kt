@@ -16,10 +16,10 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class, HttpModule::class])
 interface AppComponent {
 
-    fun getContext(): App
+  fun getContext(): App
 
-    fun getRetrofitHelper(): RetrofitHelper
+  fun getRetrofitHelper(): RetrofitHelper
 
-    fun getHttpHelper(): HttpHelper
+  fun getHttpHelper(): HttpHelper
 
 }

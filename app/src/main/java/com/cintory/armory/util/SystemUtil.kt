@@ -10,14 +10,14 @@ import com.cintory.armory.app.App
  */
 object SystemUtil {
 
-    /**
-     * 检查是否有可用网络
-     */
-    fun isNetworkConnected(): Boolean {
-        val connectivityManager = App.instance
-            .getSystemService(
-                Context.CONNECTIVITY_SERVICE
-            ) as ConnectivityManager
-        return connectivityManager.activeNetworkInfo != null
-    }
+  /**
+   * 检查是否有可用网络
+   */
+  fun isNetworkConnected(): Boolean {
+    val connectivityManager = App.instance
+        .getSystemService(
+            Context.CONNECTIVITY_SERVICE
+        ) as ConnectivityManager
+    return connectivityManager.activeNetworkInfo != null
+  }
 }

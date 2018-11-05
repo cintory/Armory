@@ -15,9 +15,9 @@ import dagger.Component
 @Component(dependencies = [AppComponent::class], modules = [FragmentModule::class])
 interface FragmentComponent {
 
-    fun getContext(): Context?
+  fun getContext(): Context?
 
-    fun inject(encounterSelectFragment: EncounterSelectFragment)
+  fun inject(encounterSelectFragment: EncounterSelectFragment)
 
-    fun inject(classSelectFragment: ClassSelectFragment)
+  fun inject(classSelectFragment: ClassSelectFragment)
 }

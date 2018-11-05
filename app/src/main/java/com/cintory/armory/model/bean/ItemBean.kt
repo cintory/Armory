@@ -5,6 +5,6 @@ package com.cintory.armory.model.bean
  * Email：Cintory@gmail.com
  */
 class ItemBean {
-    var id: String = ""
-    var name: String = ""
+  var id: String = ""
+  var name: String = ""
 }

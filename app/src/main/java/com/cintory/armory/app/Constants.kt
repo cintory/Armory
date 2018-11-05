@@ -8,7 +8,7 @@ import java.io.File
  */
 object Constants {
 
-    val PATH_DATA = App.instance.getCacheDir().getAbsolutePath() + File.separator + "data"
+  val PATH_DATA = App.instance.getCacheDir().getAbsolutePath() + File.separator + "data"
 
-    val PATH_CACHE = PATH_DATA + "/NetCache"
+  val PATH_CACHE = PATH_DATA + "/NetCache"
 }

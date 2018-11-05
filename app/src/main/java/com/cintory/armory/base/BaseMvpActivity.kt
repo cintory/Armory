@@ -12,25 +12,25 @@ import javax.inject.Inject
  */
 abstract class BaseMvpActivity<P : BasePresenter<V>, in V : BaseView> : BaseActivity(), BaseView {
 
-    @Inject
-    lateinit var mPresenter: P
+  @Inject
+  lateinit var mPresenter: P
 
 
-    protected fun getActivityComponent(): ActivityComponent = DaggerActivityComponent.builder()
-        .appComponent(App.appComponent).activityModule(getActivityModule()).build()
+  protected fun getActivityComponent(): ActivityComponent = DaggerActivityComponent.builder()
+      .appComponent(App.appComponent).activityModule(getActivityModule()).build()
 
-    private fun getActivityModule(): ActivityModule = ActivityModule(this)
+  private fun getActivityModule(): ActivityModule = ActivityModule(this)
 
-    override fun onViewCreated() {
-        super.onViewCreated()
-        initInject()
-        mPresenter.attachView(this as V)
-    }
+  override fun onViewCreated() {
+    super.onViewCreated()
+    initInject()
+    mPresenter.attachView(this as V)
+  }
 
-    override fun onDestroy() {
-        mPresenter.detachView()
-        super.onDestroy()
-    }
+  override fun onDestroy() {
+    mPresenter.detachView()
+    super.onDestroy()
+  }
 
-    protected abstract fun initInject()
+  protected abstract fun initInject()
 }

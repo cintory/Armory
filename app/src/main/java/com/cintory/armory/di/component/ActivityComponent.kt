@@ -1,6 +1,6 @@
 package com.cintory.armory.di.component
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import com.cintory.armory.di.module.ActivityModule
 import com.cintory.armory.di.scope.ActivityScope
 import com.cintory.armory.ui.main.activity.MainActivity
@@ -16,13 +16,13 @@ import dagger.Component
 @Component(dependencies = [AppComponent::class], modules = [ActivityModule::class])
 interface ActivityComponent {
 
-    fun getActivity(): Activity
+  fun getActivity(): AppCompatActivity
 
-    fun inject(mainActivity: MainActivity)
+  fun inject(mainActivity: MainActivity)
 
-    fun inject(tableOverviewActivity: TableOverviewActivity)
+  fun inject(tableOverviewActivity: TableOverviewActivity)
 
-    fun inject(tableDetailActivity: TableDetailActivity)
+  fun inject(tableDetailActivity: TableDetailActivity)
 
 
 }

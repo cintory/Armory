@@ -1,6 +1,6 @@
 package com.cintory.armory.app
 
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import com.cintory.armory.di.component.AppComponent
 import com.cintory.armory.di.component.DaggerAppComponent
 import com.cintory.armory.di.module.AppModule
@@ -16,59 +16,57 @@ import kotlin.properties.Delegates
  */
 class App : MultiDexApplication() {
 
-    val mCacheManager = CacheManager()
+  val mCacheManager = CacheManager()
 
-    companion object {
-        var instance: App by Delegates.notNull()
-        lateinit var appComponent: AppComponent
+  companion object {
+    var instance: App by Delegates.notNull()
+    lateinit var appComponent: AppComponent
+  }
+
+  init {
+    instance = this
+    appComponent = DaggerAppComponent.builder()
+        .appModule(AppModule(instance)).build()
+  }
+
+  override fun onCreate() {
+    super.onCreate()
+    if (LeakCanary.isInAnalyzerProcess(instance)) {
+      // This process is dedicated to LeakCanary for heap analysis.
+      // You should not init your app in this process.
+      return
+    }
+    LeakCanary.install(instance)
+    // Normal app init code...
+  }
+
+
+  class CacheManager {
+    var mClassList: List<ClassBean>? = null
+    var mZonesList: List<ZonesBean>? = null
+
+    fun getZoneByID(id: Int): ZonesBean? {
+      mZonesList?.forEach { if (it.id == id) return it }
+      return null
     }
 
-    init {
-        instance = this
-        appComponent = DaggerAppComponent.builder()
-            .appModule(AppModule(instance)).build()
+    fun getEncounterID(zoneID: Int, encounterID: Int): ZonesBean.EncountersEntity? {
+      val zonesBean = getZoneByID(zoneID) ?: return null
+      zonesBean.encounters!!.forEach { if (it.id == encounterID) return it }
+      return null
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        if (LeakCanary.isInAnalyzerProcess(instance)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return
-        }
-        LeakCanary.install(instance)
-        // Normal app init code...
+    fun getClassByID(id: Int): ClassBean? {
+      mClassList?.forEach { if (it.id == id) return it }
+      return null
     }
 
-
-    class CacheManager {
-        var mClassList: List<ClassBean>? = null
-        var mZonesList: List<ZonesBean>? = null
-
-        fun getZoneByID(id: Int): ZonesBean? {
-            mZonesList?.forEach { if (it.id == id) return it }
-            return null
-        }
-
-        fun getEncounterID(zoneID: Int, encounterID: Int): ZonesBean.EncountersEntity? {
-            val zonesBean = getZoneByID(zoneID) ?: return null
-            zonesBean.encounters!!.forEach { if (it.id == encounterID) return it }
-            return null
-        }
-
-        fun getClassByID(id: Int): ClassBean? {
-            mClassList?.forEach { if (it.id == id) return it }
-            return null
-        }
-
-        fun getSpecByID(classID: Int, specID: Int?): ClassBean.SpecsEntity? {
-            specID ?: return null
-            val classBean = getClassByID(classID) ?: return null
-            classBean.specs!!.forEach { if (it.id == specID) return it }
-            return null
-        }
-
+    fun getSpecByID(classID: Int, specID: Int?): ClassBean.SpecsEntity? {
+      specID ?: return null
+      val classBean = getClassByID(classID) ?: return null
+      classBean.specs!!.forEach { if (it.id == specID) return it }
+      return null
     }
 
-
+  }
 }

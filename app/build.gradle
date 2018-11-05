@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
@@ -15,7 +15,7 @@ android {
         versionName rootProject.ext.android.versionName
         resConfigs "zh"
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -27,29 +27,25 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.android.support:multidex:1.0.0'
-
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    implementation 'androidx.multidex:multidex:2.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //base
-    implementation rootProject.ext.dependencies["appcompat-v7"]
-    implementation rootProject.ext.dependencies["design"]
-    implementation rootProject.ext.dependencies["recyclerview-v7"]
-    implementation rootProject.ext.dependencies["cardview-v7"]
-
+    implementation rootProject.ext.dependencies["appcompat"]
 
     //ui
     implementation rootProject.ext.dependencies["ConstraintLayout"]
-    implementation rootProject.ext.dependencies["Zxing"]
+    implementation rootProject.ext.dependencies["material"]
+    implementation rootProject.ext.dependencies["recyclerview"]
+    implementation rootProject.ext.dependencies["cardview"]
 
     //db
     implementation rootProject.ext.dependencies["room"]
     annotationProcessor rootProject.ext.dependencies["room-compiler"]
     implementation rootProject.ext.dependencies["room-rxjava"]
-
 
     //rx
     implementation rootProject.ext.dependencies["rxjava"]
@@ -66,7 +62,6 @@ dependencies {
     kapt rootProject.ext.dependencies["glide-compiler"]
     implementation rootProject.ext.dependencies["glide-okhttp-interceptor"]
 
-
     //di
     implementation rootProject.ext.dependencies["dagger"]
     kapt rootProject.ext.dependencies["dagger-compiler"]
@@ -76,4 +71,7 @@ dependencies {
     releaseImplementation rootProject.ext.dependencies["blockcanary-no-op"]
     debugImplementation rootProject.ext.dependencies["leakcanary-android"]
     releaseImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
+}
+repositories {
+    mavenCentral()
 }

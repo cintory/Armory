@@ -6,7 +6,7 @@ package com.cintory.armory.base
  */
 interface BasePresenter<in T : BaseView> {
 
-    fun attachView(view: T)
+  fun attachView(view: T)
 
-    fun detachView()
+  fun detachView()
 }

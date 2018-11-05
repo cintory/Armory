@@ -9,21 +9,21 @@ import com.cintory.armory.model.bean.TableDetailBean
  * Email：Cintory@gmail.com
  */
 interface TableDetailContract {
-    interface View : BaseView {
+  interface View : BaseView {
 
-        fun setContent(data: List<TableDetailBean>)
+    fun setContent(data: List<TableDetailBean>)
 
-    }
+  }
 
-    interface Presenter : BasePresenter<View> {
+  interface Presenter : BasePresenter<View> {
 
-        fun getTableData(
-            start: Long,
-            end: Long,
-            sourceID: Int,
-            view: String,
-            reportID: String?,
-            fightID: Int
-        )
-    }
+    fun getTableData(
+        start: Long,
+        end: Long,
+        sourceID: Int,
+        view: String,
+        reportID: String?,
+        fightID: Int
+    )
+  }
 }

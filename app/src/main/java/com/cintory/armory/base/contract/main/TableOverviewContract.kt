@@ -10,20 +10,20 @@ import com.cintory.armory.model.bean.TableOverviewBean
  * Email：Cintory@gmail.com
  */
 interface TableOverviewContract {
-    interface View : BaseView {
-        fun setTableData(
-            data: List<TableOverviewBean>,
-            fight: FightsBean.FightsEntity,
-            logTime: Long
-        )
+  interface View : BaseView {
+    fun setTableData(
+        data: List<TableOverviewBean>,
+        fight: FightsBean.FightsEntity,
+        logTime: Long
+    )
 
-    }
+  }
 
-    interface Presenter : BasePresenter<View> {
-        fun getContent(
-            view: String,
-            reportID: String,
-            fightID: Int
-        )
-    }
+  interface Presenter : BasePresenter<View> {
+    fun getContent(
+        view: String,
+        reportID: String,
+        fightID: Int
+    )
+  }
 }

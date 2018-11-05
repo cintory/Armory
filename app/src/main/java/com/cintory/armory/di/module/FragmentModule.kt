@@ -1,6 +1,6 @@
 package com.cintory.armory.di.module
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.cintory.armory.di.scope.FragmentScope
 import dagger.Module
 import dagger.Provides
@@ -12,7 +12,7 @@ import dagger.Provides
 @Module
 class FragmentModule(var mFragment: Fragment) {
 
-    @Provides
-    @FragmentScope
-    fun provideActivity() = mFragment.context
+  @Provides
+  @FragmentScope
+  fun provideActivity() = mFragment.context
 }

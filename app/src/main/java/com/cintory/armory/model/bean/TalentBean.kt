@@ -14,32 +14,32 @@ data class TalentBean(
     val icon: String
 ) : Parcelable {
 
-    fun getTalentImage() = WarcraftLogsApi.IMAGE_HOST + "img/warcraft/abilities/$icon"
+  fun getTalentImage() = WarcraftLogsApi.IMAGE_HOST + "img/warcraft/abilities/$icon"
 
 
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readInt(),
-        parcel.readString()
-    )
+  constructor(parcel: Parcel) : this(
+      parcel.readString(),
+      parcel.readInt(),
+      parcel.readString()
+  )
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeInt(id)
-        parcel.writeString(icon)
+  override fun writeToParcel(parcel: Parcel, flags: Int) {
+    parcel.writeString(name)
+    parcel.writeInt(id)
+    parcel.writeString(icon)
+  }
+
+  override fun describeContents(): Int {
+    return 0
+  }
+
+  companion object CREATOR : Parcelable.Creator<TalentBean> {
+    override fun createFromParcel(parcel: Parcel): TalentBean {
+      return TalentBean(parcel)
     }
 
-    override fun describeContents(): Int {
-        return 0
+    override fun newArray(size: Int): Array<TalentBean?> {
+      return arrayOfNulls(size)
     }
-
-    companion object CREATOR : Parcelable.Creator<TalentBean> {
-        override fun createFromParcel(parcel: Parcel): TalentBean {
-            return TalentBean(parcel)
-        }
-
-        override fun newArray(size: Int): Array<TalentBean?> {
-            return arrayOfNulls(size)
-        }
-    }
+  }
 }

@@ -16,25 +16,25 @@ import javax.inject.Inject
  */
 class TableOverviewPresenter @Inject constructor(private val mHttpHelper: HttpHelper) :
     RxPresenter<TableOverviewContract.View>(), TableOverviewContract.Presenter {
-    override fun getContent(view: String, reportID: String, fightID: Int) {
-        var fight: FightsBean.FightsEntity? = null
-        addSubscribe(mHttpHelper.getFights(reportID)
-            .flatMap {
-                it.fights!!.forEach { if (it.id == fightID) fight = it }
-                mHttpHelper.getTables(
-                    view = view,
-                    reportID = reportID,
-                    start = fight!!.start_time,
-                    end = fight!!.end_time
-                )
-            }.observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe { t: TableResponse<TableOverviewBean> ->
-                mView?.setTableData(
-                    t.entries
-                        .sortedByDescending { it.total }, fight!!, t.totalTime
-                )
-            })
-    }
+  override fun getContent(view: String, reportID: String, fightID: Int) {
+    var fight: FightsBean.FightsEntity? = null
+    addSubscribe(mHttpHelper.getFights(reportID)
+        .flatMap {
+          it.fights!!.forEach { if (it.id == fightID) fight = it }
+          mHttpHelper.getTables(
+              view = view,
+              reportID = reportID,
+              start = fight!!.start_time,
+              end = fight!!.end_time
+          )
+        }.observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io())
+        .subscribe { t: TableResponse<TableOverviewBean> ->
+          mView?.setTableData(
+              t.entries
+                  .sortedByDescending { it.total }, fight!!, t.totalTime
+          )
+        })
+  }
 
 }

@@ -19,24 +19,24 @@ import com.cintory.armory.R
 @GlideModule
 class GlideModule : AppGlideModule() {
 
-    override fun isManifestParsingEnabled() = false
+  override fun isManifestParsingEnabled() = false
 
-    override fun applyOptions(context: Context, builder: GlideBuilder) {
-        builder.setDiskCache(InternalCacheDiskCacheFactory(context, 64 * 1000 * 1000))
-        ViewTarget.setTagId(R.id.tag_glide)
-        builder.setLogLevel(Log.ERROR)
+  override fun applyOptions(context: Context, builder: GlideBuilder) {
+    builder.setDiskCache(InternalCacheDiskCacheFactory(context, 64 * 1000 * 1000))
+    ViewTarget.setTagId(R.id.tag_glide)
+    builder.setLogLevel(Log.ERROR)
 
-        var requestOptions = RequestOptions()
+    var requestOptions = RequestOptions()
 
-        requestOptions.format(DecodeFormat.PREFER_ARGB_8888)
+    requestOptions.format(DecodeFormat.PREFER_ARGB_8888)
 
 
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O) {
-            requestOptions = requestOptions.disallowHardwareConfig()
-        }
-
-        builder.setDefaultRequestOptions(requestOptions)
+    if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O) {
+      requestOptions = requestOptions.disallowHardwareConfig()
     }
+
+    builder.setDefaultRequestOptions(requestOptions)
+  }
 
 
 }

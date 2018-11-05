@@ -1,31 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.activity.MainActivity">
 
-    <!--<android.support.v4.view.ViewPager-->
-    <!--android:id="@+id/vp_content"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="0dp"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toTopOf="parent"/>-->
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rv_data"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/cl_search_parameter"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="15dp"
+      android:layout_marginLeft="25dp"
+      android:layout_marginRight="15dp"
+      android:paddingTop="10dp"
+      android:paddingBottom="10dp"
+      android:paddingStart="15dp"
+      android:paddingEnd="15dp"
+      android:background="@drawable/shape_search_parameter"
+      android:visibility="invisible"
+      app:layout_constraintBottom_toBottomOf="parent"
+      tools:visibility="visible">
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/g_search_parameter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tv_class_spec_name,sp_difficulty,tv_encounter_name,sp_metric"/>
 
     <TextView
         android:id="@+id/tv_encounter_name"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Encounter"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:textSize="20dp"/>
 
-    <android.support.v7.widget.AppCompatSpinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/sp_difficulty"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:background="@color/translate"
         android:overlapAnchor="false"
         android:text="史诗"
@@ -35,39 +57,38 @@
 
     <TextView
         android:id="@+id/tv_class_spec_name"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Class_spec"
+
         android:textSize="20dp"
-        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/sp_difficulty"/>
 
-    <android.support.v7.widget.AppCompatSpinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/sp_metric"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:background="@color/translate"
         android:overlapAnchor="false"
         android:text="DPS"
+
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_class_spec_name"/>
 
-    <TextView
-        android:id="@+id/tv_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/sp_metric"/>
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_data"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_search"/>
-
-</android.support.constraint.ConstraintLayout>
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/fb_search_parameter"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:layout_marginBottom="25dp"
+      android:layout_marginEnd="25dp"
+      app:backgroundTint="@color/priest"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

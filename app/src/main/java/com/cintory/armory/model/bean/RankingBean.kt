@@ -28,57 +28,57 @@ class RankingBean(
     val gear: List<GearBean>,
     val size: Int
 ) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readInt(),
-        parcel.readInt(),
-        parcel.readDouble(),
-        parcel.readInt(),
-        parcel.readLong(),
-        parcel.readInt(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readByte() != 0.toByte(),
-        parcel.readInt(),
-        parcel.readInt(),
-        parcel.createTypedArrayList(TalentBean),
-        parcel.createTypedArrayList(GearBean),
-        parcel.readInt()
-    )
+  constructor(parcel: Parcel) : this(
+      parcel.readString(),
+      parcel.readInt(),
+      parcel.readInt(),
+      parcel.readDouble(),
+      parcel.readInt(),
+      parcel.readLong(),
+      parcel.readInt(),
+      parcel.readString(),
+      parcel.readString(),
+      parcel.readString(),
+      parcel.readString(),
+      parcel.readByte() != 0.toByte(),
+      parcel.readInt(),
+      parcel.readInt(),
+      parcel.createTypedArrayList(TalentBean),
+      parcel.createTypedArrayList(GearBean),
+      parcel.readInt()
+  )
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeInt(classID)
-        parcel.writeInt(spec)
-        parcel.writeDouble(total)
-        parcel.writeInt(duration)
-        parcel.writeLong(startTime)
-        parcel.writeInt(fightID)
-        parcel.writeString(reportID)
-        parcel.writeString(guildName ?: "")
-        parcel.writeString(serverName)
-        parcel.writeString(regionName)
-        parcel.writeByte(if (hidden) 1 else 0)
-        parcel.writeInt(itemLevel)
-        parcel.writeInt(exploit)
-        parcel.writeTypedList(talents)
-        parcel.writeTypedList(gear)
-        parcel.writeInt(size)
+  override fun writeToParcel(parcel: Parcel, flags: Int) {
+    parcel.writeString(name)
+    parcel.writeInt(classID)
+    parcel.writeInt(spec)
+    parcel.writeDouble(total)
+    parcel.writeInt(duration)
+    parcel.writeLong(startTime)
+    parcel.writeInt(fightID)
+    parcel.writeString(reportID)
+    parcel.writeString(guildName ?: "")
+    parcel.writeString(serverName)
+    parcel.writeString(regionName)
+    parcel.writeByte(if (hidden) 1 else 0)
+    parcel.writeInt(itemLevel)
+    parcel.writeInt(exploit)
+    parcel.writeTypedList(talents)
+    parcel.writeTypedList(gear)
+    parcel.writeInt(size)
+  }
+
+  override fun describeContents(): Int {
+    return 0
+  }
+
+  companion object CREATOR : Parcelable.Creator<RankingBean> {
+    override fun createFromParcel(parcel: Parcel): RankingBean {
+      return RankingBean(parcel)
     }
 
-    override fun describeContents(): Int {
-        return 0
+    override fun newArray(size: Int): Array<RankingBean?> {
+      return arrayOfNulls(size)
     }
-
-    companion object CREATOR : Parcelable.Creator<RankingBean> {
-        override fun createFromParcel(parcel: Parcel): RankingBean {
-            return RankingBean(parcel)
-        }
-
-        override fun newArray(size: Int): Array<RankingBean?> {
-            return arrayOfNulls(size)
-        }
-    }
+  }
 }

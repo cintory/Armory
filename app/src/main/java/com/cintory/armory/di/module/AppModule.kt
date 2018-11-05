@@ -14,12 +14,12 @@ import javax.inject.Singleton
 @Module
 class AppModule(var mApp: App) {
 
-    @Provides
-    @Singleton
-    fun provideApplicationContext(): App = mApp
+  @Provides
+  @Singleton
+  fun provideApplicationContext(): App = mApp
 
-    @Provides
-    @Singleton
-    fun provideHttpHelper(retrofitHelper: RetrofitHelper): HttpHelper = retrofitHelper
+  @Provides
+  @Singleton
+  fun provideHttpHelper(retrofitHelper: RetrofitHelper): HttpHelper = retrofitHelper
 
 }
